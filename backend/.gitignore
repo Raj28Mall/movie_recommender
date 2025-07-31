@@ -1,0 +1,80 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask/venv
+venv/
+env/
+instance/
+*.env
+*.env.*
+
+# Jupyter Notebooks Checkpoints
+.ipynb_checkpoints/
+
+# Pytest / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+.pytest_cache/
+coverage.xml
+*.cover
+*.log
+
+# VSCode / IDE configs
+.vscode/
+.idea/
+*.swp
+
+# Compiled files
+*.so
+
+# Logs and DBs
+*.log
+*.sqlite3
+*.db
+
+# Docker
+*.pid
+*.tar
+*.bak
+
+# Mac/Linux
+.DS_Store
+Thumbs.db
+
+# PIP
+pip-log.txt
+
+# Dist / Packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# mypy
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Flask static/media uploads (if any)
+uploads/
+media/
+staticfiles/
+
+# Ignore secrets, if you ever add them
+secrets.json
+
