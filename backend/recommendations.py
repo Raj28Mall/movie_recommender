@@ -2,6 +2,12 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+PLACEHOLDER_URL='https://picsum.photos/200/300'
+
 
 def load_dataset(FILE_PATH="master_dataset_final.csv"):
     """
@@ -39,7 +45,7 @@ def create_similarity_matrix(count_matrix):
     return cosine_sim
 
 def get_recommendations(title, dataset, cosine_sim, top_n=8):
-    """    Get movie recommendations based on the title.
+    """Get movie recommendations based on the title.
     
     Parameters:
     title (str): The title of the movie to find recommendations for.
@@ -84,21 +90,60 @@ def get_recommendations(title, dataset, cosine_sim, top_n=8):
     movie_indices = [i[0] for i in sim_scores]
     
     recommendations = dataset.iloc[movie_indices][['title', 'release_date']]
-    recommendations['director'] = dataset.iloc[movie_indices][['main_director']]
+    recommendations['director'] = dataset.iloc[movie_indices]['main_director']
+    recommendations['index'] = dataset.iloc[movie_indices]['movieId']
     recommendations = recommendations.reset_index(drop=True)
     
     print(f"Recommendations for '{title}':")
-    print(recommendations)
+    # print(recommendations.to_dict('records'))
+    # recommendations_with_posters = get_recommended_movie_posters(recommendations.to_dict('records'))
+    # return (recommendations_with_posters)
+    return (recommendations.to_dict('records'))
+
+async def get_recommended_movie_posters(session, movie):
+    """Get the posters for the given movie asynchronously
     
-    return recommendations
+    Parameters:
+    movie : Movie object without poster
+    
+    Returns:
+    movie : Movie object with poster
+    """
+    API_KEY = os.getenv("OMDB_API_KEY")
+    if not API_KEY:
+        print("OMDB API key not found.")
+        movie['poster'] = PLACEHOLDER_URL    
+        return movie
+
+    URL = f'http://www.omdbapi.com/?t={movie["title"]}&apikey={API_KEY}'
+
+    try:
+        async with session.get(URL) as response:
+            if response.status == 200:
+                data = await response.json()
+                if data.get('Response') == 'True' and 'Poster' in data and data['Poster'] != 'N/A':
+                    movie['poster'] = data['Poster']
+                else:
+                    print(f"No poster found for movie: {movie['title']}")
+                    movie['poster'] = PLACEHOLDER_URL
+            else:
+                print(f"Error fetching poster for movie: {movie['title']}. Status code: {response.status}")
+                movie['poster'] = PLACEHOLDER_URL
+    except Exception as e:
+        print(f"An exception occurred while fetching poster for {movie['title']}: {e}")
+        movie['poster'] = PLACEHOLDER_URL
+        
+    return movie
 
 if __name__ == "__main__":
-    # Example usage
+    # Example usage, get by directyly running this file. Recommendations for "The Dark Knight"
     try:
         dataset = load_dataset()
+        print(dataset.columns)
         count_matrix = create_count_matrix(dataset)
         cosine_sim = create_similarity_matrix(count_matrix)
         recommendations = get_recommendations("The Dark Knight", dataset, cosine_sim)
+        print(recommendations)
     except Exception as e:
         print(f"An error occurred: {e}")
         raise

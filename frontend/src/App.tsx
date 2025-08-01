@@ -7,62 +7,64 @@ import { Card, CardContent } from "@/components/ui/card"
 import { fetchRecommendedMovies } from "./lib/api"
 import type { Movie } from "@/lib/types"
 
+const PLACEHOLDER_IMAGE='https://picsum.photos/200/300';
+
 const initialMovies = [
 	{
 		id: 1,
 		title: "The Shawshank Redemption",
 		director: "Frank Darabont",
 		release_date: "1994-09-23",
-		poster: "https://picsum.photos/200/300",
+		poster: `${PLACEHOLDER_IMAGE}`,
 	},
 	{
 		id: 2,
 		title: "The Godfather",
 		director: "Francis Ford Coppola",
 		release_date: "1972-03-24",
-		poster: "https://picsum.photos/200/300",
+		poster: `${PLACEHOLDER_IMAGE}`,
 	},
 	{
 		id: 3,
 		title: "The Dark Knight",
 		director: "Christopher Nolan",
 		release_date: "2008-07-18",
-		poster: "https://picsum.photos/200/300",
+		poster: `${PLACEHOLDER_IMAGE}`,
 	},
 	{
 		id: 4,
 		title: "Pulp Fiction",
 		director: "Quentin Tarantino",
 		release_date: "1994-10-14",
-		poster: "https://picsum.photos/200/300",
+		poster: `${PLACEHOLDER_IMAGE}`,
 	},
 	{
 		id: 5,
 		title: "Forrest Gump",
 		director: "Robert Zemeckis",
 		release_date: "1994-07-06",
-		poster: "https://picsum.photos/200/300",
+		poster: `${PLACEHOLDER_IMAGE}`,
 	},
 	{
 		id: 6,
 		title: "Inception",
 		director: "Christopher Nolan",
 		release_date: "2010-07-16",
-		poster: "https://picsum.photos/200/300",
+		poster: `${PLACEHOLDER_IMAGE}`,
 	},
 	{
 		id: 7,
 		title: "The Matrix",
 		director: "The Wachowskis",
 		release_date: "1999-03-31",
-		poster: "https://picsum.photos/200/300",
+		poster: `${PLACEHOLDER_IMAGE}`,
 	},
 	{
 		id: 8,
 		title: "Goodfellas",
 		director: "Martin Scorsese",
 		release_date: "1990-09-19",
-		poster: "https://picsum.photos/200/300",
+		poster: `${PLACEHOLDER_IMAGE}`,
 	},
 ]
 
@@ -75,8 +77,7 @@ export default function MovieRecommendationSystem() {
 	const getRecommendedMovies = async (title: string) => {
 		try {
 			const response = await fetchRecommendedMovies(title)
-      console.log(response);
-      
+			return response;
 		} catch (error) {
 			console.error("Error fetching recommended movies:", error)
 		} finally {
@@ -88,7 +89,7 @@ export default function MovieRecommendationSystem() {
 		if (e.key == "Enter" && searchQuery.trim() !== "") {
 			setHasSearched(true)
 			setLoading(true)
-			const movie_name = searchQuery.toLowerCase().trim()
+			const movie_name = searchQuery.trim().toLowerCase()
 			getRecommendedMovies(movie_name)
 		}
 	}
