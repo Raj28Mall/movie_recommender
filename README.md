@@ -1,15 +1,45 @@
-# Movie recommender
+# Movie Recommender
 
-I learnt Python- variables, data types, string operations, conditional statements, loops (for, while), functions, list/dictionary/tuple manipulations, and basic file input-output.
+A movie recommendation system that uses content-based filtering to suggest movies based on user preferences. The application analyzes movie features like genres, directors, and other metadata to provide personalized recommendations.
 
-Learned about NumPy and understood array creation (1D, 2D), indexing/slicing, shape and reshape, broadcasting, vectorized operations, mathematical functions (mean, std, sum, etc.), and random number generation.
+## Features
 
-learnt about Pandas and worked on creating and modifying DataFrames and Series, choosing rows and columns, conditional filtering, handling missing data (dropna, isnull), reading and writing to CSV files, and performing simple GroupBy operations.
+### 🎬 Movie Recommendations
+- **Content-Based Filtering**: Uses cosine similarity to find movies with similar characteristics
+- **Intelligent Search**: Search for any movie in the dataset to get personalized recommendations
+- **Real-time Results**: Get top curated movie recommendations instantly
 
-I worked on creating line graphs, bar charts, histograms, and pie charts for Matplotlib. learnt how to display multiple plots in a single figure, add legends, alter line styles and colours, and label axes.
+## Technology Stack
 
-Used the NLTK toolkit to preprocess text: tokenization, stopword removal, lemmatization
+### Backend
+- **Python 3.12**: Core backend language
+- **Flask**: Lightweight web framework with CORS support
+- **Pandas**: Data manipulation and analysis
+- **Scikit-learn**: Machine learning algorithms for recommendation engine
+- **Asyncio & Aiohttp**: Asynchronous API calls for poster fetching
+- **OMDB API**: Movie poster and metadata retrieval
 
-Employed CountVectorizer (from sklearn.feature_extraction.text) to convert movie descriptions into a matrix of token counts
+### Frontend
+- **React 19**: Modern frontend framework with hooks
+- **TypeScript**: Type-safe JavaScript development
+- **Vite**: Fast build tool and development server
+- **Tailwind CSS**: Utility-first CSS framework
+- **Lucide React**: Beautiful SVG icons
+- **Axios**: HTTP client for API communication
 
-Computed cosine similarity between vectorized movie plot summaries to find similar movies
+### Machine Learning
+- **CountVectorizer**: Text feature extraction from movie metadata
+- **Cosine Similarity**: Similarity calculation between movies
+- **Content-Based Filtering**: Recommendation algorithm based on movie features
+
+## How It Works
+
+### Recommendation Algorithm
+1. **Data Processing**: Loads movie dataset with metadata (genres, directors, cast, etc.)
+2. **Feature Extraction**: Creates a "soup" of combined features for each movie
+3. **Vectorization**: Uses CountVectorizer to convert text features into numerical vectors
+4. **Similarity Calculation**: Computes cosine similarity matrix between all movies
+5. **Recommendation Generation**: Returns top most similar movies based on user input
+
+
+
