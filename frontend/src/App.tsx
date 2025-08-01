@@ -77,7 +77,7 @@ export default function MovieRecommendationSystem() {
 	const getRecommendedMovies = async (title: string) => {
 		try {
 			const response = await fetchRecommendedMovies(title)
-			return response;
+			setMoviesToDisplay(response)
 		} catch (error) {
 			console.error("Error fetching recommended movies:", error)
 		} finally {

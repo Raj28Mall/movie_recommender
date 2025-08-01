@@ -7,8 +7,7 @@ export const fetchRecommendedMovies = async (title: string) =>{
 
     try{
         const response = await axios.get(URL);
-        console.log(response);
-        return response;
+        return response.data;
     }catch(err){
         console.error(`Error fetching recommended movies for ${title}`, err)
         return [];

@@ -74,10 +74,9 @@ def get_recommendations(title, dataset, cosine_sim, top_n=8):
     if 'release_date' not in dataset.columns:
         raise ValueError("The dataset must contain a 'release_date' column.")
     
-    indices = pd.Series(dataset.index, index=(dataset['title'])).drop_duplicates()
+    indices = pd.Series(dataset.index, index=dataset['title'].str.lower()).drop_duplicates()
     
-    if title not in indices:
-        print(title)
+    if title.lower() not in indices:
         print(f"Title '{title}' not found in the dataset.")
         return pd.DataFrame()
     
