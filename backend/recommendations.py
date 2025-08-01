@@ -78,6 +78,11 @@ def get_recommendations(title, dataset, cosine_sim, top_n=8):
         return pd.DataFrame()
     
     idx = indices[title]
+
+    #For handling duplicates
+    if isinstance(idx, pd.Series):
+        idx = idx.iloc[0]
+
     sim_scores = list(enumerate(cosine_sim[idx]))
     
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
