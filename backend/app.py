@@ -42,7 +42,4 @@ if __name__ == '__main__':
     if cosine_sim is None:
         print("Cosine similarity was unable to be computed. Server will not start")
         exit()
-    print("Dataset loaded successfully")
-    print("Count matrix computed successfully")
-    print("Cosine similarity computed successfully")
     app.run(debug=True, port=5000)

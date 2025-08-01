@@ -21,7 +21,6 @@ def load_dataset(FILE_PATH="master_dataset_final.csv"):
     """
     try:
         df = pd.read_csv(FILE_PATH)
-        print(f"Dataset loaded successfully with {df.shape[0]} rows and {df.shape[1]} columns.")
         return df
     except FileNotFoundError:
         print(f"Error: The file {FILE_PATH} was not found.")
@@ -35,13 +34,11 @@ def create_count_matrix(dataset):
     """Create count matrix"""
     count_vectorizer = CountVectorizer(stop_words='english')
     count_matrix = count_vectorizer.fit_transform(dataset['soup'])
-    print("Count matrix created successfully.")
     return count_matrix
 
 def create_similarity_matrix(count_matrix):
     """Create similarity matrix"""
     cosine_sim = cosine_similarity(count_matrix, count_matrix)
-    print("Cosine similarity matrix created successfully.")
     return cosine_sim
 
 def get_recommendations(title, dataset, cosine_sim, top_n=8):
@@ -93,10 +90,6 @@ def get_recommendations(title, dataset, cosine_sim, top_n=8):
     recommendations['index'] = dataset.iloc[movie_indices]['movieId']
     recommendations = recommendations.reset_index(drop=True)
     
-    print(f"Recommendations for '{title}':")
-    # print(recommendations.to_dict('records'))
-    # recommendations_with_posters = get_recommended_movie_posters(recommendations.to_dict('records'))
-    # return (recommendations_with_posters)
     return (recommendations.to_dict('records'))
 
 async def get_recommended_movie_posters(session, movie):
@@ -138,7 +131,6 @@ if __name__ == "__main__":
     # Example usage, get by directyly running this file. Recommendations for "The Dark Knight"
     try:
         dataset = load_dataset()
-        print(dataset.columns)
         count_matrix = create_count_matrix(dataset)
         cosine_sim = create_similarity_matrix(count_matrix)
         recommendations = get_recommendations("The Dark Knight", dataset, cosine_sim)
