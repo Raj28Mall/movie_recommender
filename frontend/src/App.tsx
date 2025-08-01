@@ -148,6 +148,8 @@ export default function MovieRecommendationSystem() {
 						</div>
 					)}
 				</div>
+				
+				{!loading ? (
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 					{moviesToDisplay.map((movie) => (
@@ -183,6 +185,18 @@ export default function MovieRecommendationSystem() {
 						</Card>
 					))}
 				</div>
+				) : (
+					<div className="flex flex-col items-center justify-center py-16 space-y-4">
+						<div className="relative">
+							<div className="absolute inset-0 rounded-full bg-blue-200 opacity-25 animate-ping"></div>
+							<Loader2 className="h-12 w-12 animate-spin text-blue-600 relative z-10"/>
+						</div>
+						<div className="text-center">
+							<h3 className="text-lg font-semibold text-slate-700 mb-1">Finding recommendations...</h3>
+							<p className="text-sm text-slate-500">Please wait while we search for movies you'll love</p>
+						</div>
+					</div>
+				)}
 
 				{hasSearched && !loading && moviesToDisplay.length === 0 && (
 					<div className="text-center py-12">
