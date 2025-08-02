@@ -18,10 +18,6 @@ async def recommendations(title):
     if recommended_movies is None:
         return flask.jsonify({"error": "Movie not found or dataset not loaded"}), 404
 
-    # for movie in recommended_movies:
-    #     movie['director'] = master_dataset['main_director'].iloc[movie['index']]
-    #     movie['release_date'] = str(master_dataset['release_date'].iloc[movie['index']])
-
     async with aiohttp.ClientSession() as session:
         tasks = [get_recommended_movie_posters(session, movie) for movie in recommended_movies]
         
