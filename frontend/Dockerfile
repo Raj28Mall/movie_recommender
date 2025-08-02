@@ -11,8 +11,6 @@ RUN npm install
 
 COPY . .
 
-RUN cp .env.example .env || true
-
 EXPOSE 3000
 
 CMD ["npm", "run", "dev", "--", "--host"]

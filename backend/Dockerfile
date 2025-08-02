@@ -7,6 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN cp .env.example .env || true
-
 CMD ["python3", "app.py"]

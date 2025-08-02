@@ -1,16 +1,16 @@
 # Movie Recommender
 
-A  movie recommendation system that uses content-based filtering to suggest movies based on user preferences. The application analyzes movie features like directors, and other metadata to provide personalized recommendations.
+A  movie recommendation system that uses content-based filtering to suggest movies based on user preferences. The application analyzes movie features like directors, and other metadata to provide recommendations.
 
 ## Quick Start
 
 ### Prerequisites
 - **Docker** (for Option 1)
 - **Python 3.12+** and **Node.js 18+** (for Option 2)
-- **OMDB API Key** (required for movie posters, can go ahead without this for placeholder images)
+- **OMDB API Key** (required for movie posters, can go ahead without this, will be filled with placeholder images)
 
 ### 🔑 API Credentials Setup
-Before running the application, you'll need to obtain an OMDB API key:
+Before running the application, you may want to to obtain an OMDB API key:
 
 1. Visit **[OMDB_WEBSITE_URL](https://www.omdbapi.com/apikey.aspx?__EVENTTARGET=freeAcct&__EVENTARGUMENT=&__LASTFOCUS=&__VIEWSTATE=%2FwEPDwUKLTIwNDY4MTIzNQ9kFgYCAQ9kFgICBw8WAh4HVmlzaWJsZWhkAgIPFgIfAGhkAgMPFgIfAGhkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBQtwYXRyZW9uQWNjdAUIZnJlZUFjY3QFCGZyZWVBY2N0oCxKYG7xaZwy2ktIrVmWGdWzxj%2FDhHQaAqqFYTiRTDE%3D&__VIEWSTATEGENERATOR=5E550F58&__EVENTVALIDATION=%2FwEdAAU%2BO86JjTqdg0yhuGR2tBukmSzhXfnlWWVdWIamVouVTzfZJuQDpLVS6HZFWq5fYpioiDjxFjSdCQfbG0SWduXFd8BcWGH1ot0k0SO7CfuulHLL4j%2B3qCcW3ReXhfb4KKsSs3zlQ%2B48KY6Qzm7wzZbR&at=freeAcct&Email=)** to get your free API key
 2. The setup scripts will automatically create `.env` files where you can add your API key
@@ -22,9 +22,8 @@ Before running the application, you'll need to obtain an OMDB API key:
 ```bash
 ./setup.sh
 ```
-
-**Windows:**
-```batch
+**Windows: (Untested, recommend to proceed with manual setup)**
+```bat
 setup.bat
 ```
 
@@ -112,7 +111,3 @@ OMDB_API_KEY=add_your_api_key_here
 3. **Vectorization**: Uses CountVectorizer to convert text features into numerical vectors
 4. **Similarity Calculation**: Computes cosine similarity matrix between all movies
 5. **Recommendation Generation**: Returns top most similar movies based on user input
-
-
-
-
