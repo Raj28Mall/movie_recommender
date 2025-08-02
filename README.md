@@ -2,6 +2,9 @@
 
 A  movie recommendation system that uses content-based filtering to suggest movies based on user preferences. The application analyzes movie features like directors, and other metadata to provide recommendations.
 
+<video src="submission_video.mp4" controls="controls" muted="muted" autoplay="autoplay" style="max-width:100%;">
+</video>
+
 ## Quick Start
 
 ### Prerequisites
